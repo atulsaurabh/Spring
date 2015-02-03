@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE form-validation PUBLIC
+          "-//Apache Software Foundation//DTD Commons Validator Rules Configuration 1.1.3//EN"
+          "http://jakarta.apache.org/commons/dtds/validator_1_1_3.dtd">
+
+<form-validation>
+
+<!--
+     This is a minimal Validator form file with a couple of examples.
+-->
+
+    <global>
+
+        <!-- An example global constant
+        <constant>
+            <constant-name>postalCode</constant-name>
+            <constant-value>^\d{5}\d*$</constant-value>
+        </constant>
+        end example-->
+
+    </global>
+
+    <formset>
+
+        <!-- An example form -->
+        <form name="logonForm">
+            <field
+                property="username"
+                depends="required">
+                    <arg key="logonForm.username"/>
+            </field>
+            <field
+                property="password"
+                depends="required,mask">
+                    <arg key="logonForm.password"/>
+                    <var>
+                        <var-name>mask</var-name>
+                        <var-value>^[0-9a-zA-Z]*$</var-value>
+                    </var>
+            </field>
+        </form>
+        
+        <form name="testform"></form>
+
+    </formset>
+
+    <!-- An example formset for another locale -->
+    <formset language="fr">
+
+        <constant>
+            <constant-name>postalCode</constant-name>
+            <constant-value>^[0-9a-zA-Z]*$</constant-value>
+        </constant>
+
+        <!-- An example form -->
+        <form name="logonForm">
+            <field
+                property="username"
+                depends="required">
+                    <arg key="logonForm.username"/>
+            </field>
+            <field
+                property="password"
+                depends="required,mask">
+                    <arg key="logonForm.password"/>
+                    <var>
+                        <var-name>mask</var-name>
+                        <var-value>^[0-9a-zA-Z]*$</var-value>
+                    </var>
+            </field>
+        </form>
+        
+        <form name="testform">
+            <field property="uname" depends="required"/>
+            <field property="upass" depends="required"/>
+        </form>
+
+   </formset>
+  <formset>
+      <form name="orderFormBean">
+          <field property="firstName" depends="required">
+              <arg key="inputForm.firstName" bundle="labels" />
+          </field>
+          <field property="lastName" depends="required">
+              <arg key="inputForm.lastName" bundle="labels"/>
+          </field>
+          <field property="address" depends="required">
+              <arg key="inputForm.address" bundle="labels"/>
+          </field>
+          <field property="zipCode" depends="required,mask">
+              <arg key="inputForm.zipCode" bundle="labels"/>
+              <!--<arg1 key="inputForm.name" bundle="labels"/>-->
+              <var>
+                  <var-name>mask</var-name>
+                  <var-value>^\d{6}\d$</var-value>
+              </var>
+          </field>
+          <field property="creditCardNumber" depends="required,creditCard">
+              <arg key="inputForm.creditCardNumber" bundle="labels"/>
+          </field>
+          <field property="email" depends="required,email">
+              <arg key="inputForm.email" bundle="labels"/>
+          </field>
+      </form>
+  </formset>
+</form-validation>
